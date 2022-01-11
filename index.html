@@ -85,7 +85,7 @@ The <code><dfn data-cite="netinfo#network-information">NetworkInformation</dfn><
   </pre>
 
   <div class="note">
-    NOTE: The old name for this header (`Save-Data`) will continue to be sent by default until further notice. The new name (`Sec-CH-Save-Data`) will not be sent unless specifically requested in the normal client hints flow.
+    NOTE: Browsers that send the `Save-Data` header by default are likely to continue to do that for backward compatibility purposes. The new header name (`Sec-CH-Save-Data`) will not be sent unless specifically requested in the normal client hints flow.
   </div>
 
   This specification defines the "`on`" `token` value, which is used as a signal indicating explicit user opt-in into a reduced data usage mode (i.e. when <a>saveData</a>'s value is `true`), and when communicated to origins allows them to deliver alternate content honoring such preference - e.g. smaller image and video resources, alternate markup, and so on.
