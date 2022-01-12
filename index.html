@@ -76,20 +76,24 @@ The <code><dfn data-cite="netinfo#network-information">NetworkInformation</dfn><
 
   <p class="note">The user may enable such preference, if made available by the user agent, due to high data transfer costs, slow connection speeds, or other reasons.</p>
 
-  #### <code><dfn>Save-Data</dfn></code> Request Header Field
+  #### <code><dfn>Sec-CH-Save-Data</dfn></code> Request Header Field
 
   The <a>SaveData</a> request header is a Client Hint [[CLIENT-HINTS]]. The header's value is an `sh-list` [[STRUCTURED-HEADERS]] which contains `token`s, indicating the user agent's preference for reduced data usage.
 
   <pre class="nohighlight">
-    Save-Data = sh-list
+    Sec-CH-Save-Data = sh-list
   </pre>
+
+  <div class="note">
+    NOTE: Browsers that send the `Save-Data` header by default are likely to continue to do that for backward compatibility purposes. The new header name (`Sec-CH-Save-Data`) will not be sent unless specifically requested in the normal client hints flow.
+  </div>
 
   This specification defines the "`on`" `token` value, which is used as a signal indicating explicit user opt-in into a reduced data usage mode (i.e. when <a>saveData</a>'s value is `true`), and when communicated to origins allows them to deliver alternate content honoring such preference - e.g. smaller image and video resources, alternate markup, and so on.
 
   In case of multiple conflicting tokens in the list, the latest token takes precedence.
 
   <div class="issue">
-    TODO: update <a href="https://fetch.spec.whatwg.org/#fetching">Fetch#fetching algorithm</a> to use `connection.saveData` as signal to append the Save-Data header.
+    TODO: update <a href="https://fetch.spec.whatwg.org/#fetching">Fetch#fetching algorithm</a> to use `connection.saveData` as signal to append the Sec-CH-Save-Data header.
   </div>
 </section>
 
@@ -122,9 +126,9 @@ For example, user agents may decide to omit or lie about the user's preference w
 The following three HTTP request header fields should be added to the permanent registry of message header fields (see [[RFC3864]]), taking into account the guidelines given by HTTP/1.1 [[RFC7231]].
 
 <section id="registration-save-data">
-### `Save-Data` Request Header Field Registration
+### `Sec-CH-Save-Data` Request Header Field Registration
 
-* Header Field Name: Save-Data
+* Header Field Name: Sec-CH-Save-Data
 * Applicable Protocol: Hypertext Transfer Protocol (HTTP)
 * Status: Standard
 * Author/Change controller: W3C
