@@ -78,19 +78,15 @@ The <code><dfn data-cite="netinfo#network-information">NetworkInformation</dfn><
 
   #### <code><dfn>Sec-CH-Save-Data</dfn></code> Request Header Field
 
-  The <a>SaveData</a> request header is a Client Hint [[CLIENT-HINTS]]. The header's value is an `sh-list` [[STRUCTURED-HEADERS]] which contains `token`s, indicating the user agent's preference for reduced data usage.
+  The <a>SaveData</a> request header is a Client Hint [[CLIENT-HINTS]]. The header's value is an `sh-boolean` [[STRUCTURED-HEADERS]] indicating the user agent's preference for reduced data usage.
 
   <pre class="nohighlight">
-    Sec-CH-Save-Data = sh-list
+    Sec-CH-Save-Data = sh-boolean
   </pre>
 
   <div class="note">
-    NOTE: Browsers that send the `Save-Data` header by default are likely to continue to do that for backward compatibility purposes. The new header name (`Sec-CH-Save-Data`) will not be sent unless specifically requested in the normal client hints flow.
+    NOTE: Browsers that send the `Save-Data` header by default are likely to continue to do that for backward compatibility purposes.
   </div>
-
-  This specification defines the "`on`" `token` value, which is used as a signal indicating explicit user opt-in into a reduced data usage mode (i.e. when <a>saveData</a>'s value is `true`), and when communicated to origins allows them to deliver alternate content honoring such preference - e.g. smaller image and video resources, alternate markup, and so on.
-
-  In case of multiple conflicting tokens in the list, the latest token takes precedence.
 
   <div class="issue">
     TODO: update <a href="https://fetch.spec.whatwg.org/#fetching">Fetch#fetching algorithm</a> to use `connection.saveData` as signal to append the Sec-CH-Save-Data header.
